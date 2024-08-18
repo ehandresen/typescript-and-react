@@ -1,8 +1,13 @@
-function Component({ name, id }: { name: string; id: number }) {
+interface ComponentProps {
+  name: string;
+  id: number;
+}
+
+function Component(props: ComponentProps) {
   return (
     <div>
-      <h2>name: {name}</h2>
-      <h2>id: {id}</h2>
+      <h2>name: {props.name}</h2>
+      <h2>id: {props.id}</h2>
     </div>
   );
 }
