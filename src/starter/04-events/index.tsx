@@ -25,8 +25,10 @@ function Component() {
     const text = formData.get('text') as string;
 
     const person: Person = {
-      name: data.text as string,
+      name: text,
     };
+
+    console.log(person);
   };
 
   return (
