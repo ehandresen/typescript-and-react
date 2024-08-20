@@ -5,17 +5,13 @@ type Props = {
 };
 
 function Component({ type, name, email }: Props) {
+  const alertType = type === 'basic' ? 'success' : 'danger';
+
   return (
-    <div>
-      <div
-        className={`alert ${
-          type === 'basic' ? 'alert-success' : 'alert-danger'
-        }`}
-      >
-        <h2>User: {name}</h2>
-        {email ? <h2>Email: {email}</h2> : null}
-      </div>
-    </div>
+    <article className={`alert alert-${alertType}`}>
+      <h2>User: {name}</h2>
+      {email ? <h2>Email: {email}</h2> : null}
+    </article>
   );
 }
 export default Component;
