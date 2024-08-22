@@ -27,11 +27,17 @@ function Form({ addTask }: FormProps) {
     };
 
     addTask(newTask);
+    setDescription('');
   }
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <input className="form-input" type="text" onChange={handleInput} />
+      <input
+        value={description}
+        className="form-input"
+        type="text"
+        onChange={handleInput}
+      />
       <button className="btn btn-center" type="submit">
         click me
       </button>
