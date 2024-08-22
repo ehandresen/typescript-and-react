@@ -34,7 +34,7 @@ function Form({ addTask }: FormProps) {
     <form className="form" onSubmit={handleSubmit}>
       <input
         value={description}
-        className="form-input"
+        className="form-input mb-1"
         type="text"
         onChange={handleInput}
       />

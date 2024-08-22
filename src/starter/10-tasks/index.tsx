@@ -14,10 +14,17 @@ function Component() {
     }
   };
 
+  const toggleTask = (task: Task): void => {
+    if (task) {
+      task.isCompleted = !task.isCompleted;
+      console.log(task.isCompleted);
+    }
+  };
+
   return (
     <section>
       <Form addTask={addTask} />
-      <List />
+      <List toggleTask={toggleTask} list={taskList} />
     </section>
   );
 }
