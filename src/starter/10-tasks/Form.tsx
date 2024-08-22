@@ -1,6 +1,11 @@
 import { useState } from 'react';
+import { Task } from './types';
 
-function Form() {
+type FormProps = {
+  addTask: (task: Task) => void;
+};
+
+function Form({ addTask }: FormProps) {
   const [description, setDescription] = useState<string>('');
 
   function handleInput(e: React.ChangeEvent<HTMLInputElement>): void {
@@ -9,6 +14,19 @@ function Form() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
+
+    if (!description) {
+      alert('please enter a task');
+      return;
+    }
+
+    const newTask: Task = {
+      id: Math.random().toString(),
+      description,
+      isCompleted: false,
+    };
+
+    addTask(newTask);
   }
 
   return (
