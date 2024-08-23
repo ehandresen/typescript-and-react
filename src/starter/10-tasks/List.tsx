@@ -10,7 +10,9 @@ function List({ list, toggleTask }: ListProps) {
     <ul className="list">
       {list.map((task) => (
         <li key={task.id}>
-          {task.isCompleted ? <s>{task.description}</s> : task.description}
+          <p>
+            {task.isCompleted ? <s>{task.description}</s> : task.description}
+          </p>
           <input
             type="checkbox"
             checked={task.isCompleted}

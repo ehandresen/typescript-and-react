@@ -15,16 +15,12 @@ function Component() {
   }, [taskList]);
 
   const addTask = (task: Task): void => {
-    if (task) {
-      setTaskList([...taskList, task]);
-    }
+    setTaskList([...taskList, task]);
   };
 
   const toggleTask = (task: Task): void => {
-    if (task) {
-      task.isCompleted = !task.isCompleted;
-      setTaskList([...taskList]); // trigger a re-render to update ui
-    }
+    task.isCompleted = !task.isCompleted;
+    setTaskList([...taskList]); // trigger a re-render to update ui
   };
 
   return (
