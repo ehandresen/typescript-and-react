@@ -1,12 +1,18 @@
 import List from './List';
 import Form from './Form';
 import type { Task } from './types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Component() {
-  const [taskList, setTaskList] = useState<Task[]>([]);
+  const [taskList, setTaskList] = useState<Task[]>(() => {
+    const savedTasks = localStorage.getItem('tasks');
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
 
-  console.log(taskList);
+  useEffect(() => {
+    const listString = JSON.stringify(taskList);
+    localStorage.setItem('tasks', listString);
+  }, [taskList]);
 
   const addTask = (task: Task): void => {
     if (task) {
@@ -17,14 +23,14 @@ function Component() {
   const toggleTask = (task: Task): void => {
     if (task) {
       task.isCompleted = !task.isCompleted;
-      console.log(task.isCompleted);
+      setTaskList([...taskList]); // trigger a re-render to update ui
     }
   };
 
   return (
     <section>
       <Form addTask={addTask} />
-      <List toggleTask={toggleTask} list={taskList} />
+      <List list={taskList} toggleTask={toggleTask} />
     </section>
   );
 }

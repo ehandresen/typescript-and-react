@@ -5,13 +5,17 @@ type ListProps = {
   toggleTask: (task: Task) => void;
 };
 
-function List({ toggleTask, list }: ListProps) {
+function List({ list, toggleTask }: ListProps) {
   return (
     <ul className="list">
       {list.map((task) => (
         <li key={task.id}>
-          {task.description}
-          <input type="checkbox" onChange={() => toggleTask(task)} />
+          {task.isCompleted ? <s>{task.description}</s> : task.description}
+          <input
+            type="checkbox"
+            checked={task.isCompleted}
+            onChange={() => toggleTask(task)}
+          />
         </li>
       ))}
     </ul>
